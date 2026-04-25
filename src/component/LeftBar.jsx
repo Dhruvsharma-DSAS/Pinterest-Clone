@@ -69,10 +69,10 @@ const LeftBar = ({ onSettingsClick, isDarkMode }) => {
 
       <div onClick={onSettingsClick} className="w-full">
         <NavItem
-            src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png"
+            src={isDarkMode ? "https://cdn-icons-png.flaticon.com/512/3524/3524659.png" : "https://cdn-icons-png.flaticon.com/512/3524/3524636.png"}
             alt="Settings"
             label="Settings"
-            className="h-[26px] w-[26px] object-contain dark:invert"
+            className="h-[26px] w-[26px] object-contain dark:invert transition-all duration-300"
         />
       </div>
     </div>
