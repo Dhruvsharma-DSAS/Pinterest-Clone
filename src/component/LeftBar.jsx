@@ -68,6 +68,7 @@ const LeftBar = () => {
       </div>
 
       <NavItem
+        to="/settings"
         src="https://i.pinimg.com/736x/e5/d1/b0/e5d1b01c1447bea5b4cdc2344a315a93.jpg"
         alt="Settings"
         label="Settings"

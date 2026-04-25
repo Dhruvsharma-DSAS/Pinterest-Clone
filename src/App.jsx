@@ -8,6 +8,7 @@ import Explore from './component/Explore'
 import Notifications from './component/Notifications'
 import YourBoard from './component/YourBoard'
 import ExploreCategory from './component/ExploreCategory'
+import Settings from './component/Settings'
 
 const Layout = ({ children }) => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
       <Route path='/explore/:categoryId' element={<Layout><ExploreCategory /></Layout>} />
       <Route path='/notifications' element={<Layout><Notifications /></Layout>} />
       <Route path='/your-board' element={<Layout><YourBoard /></Layout>} />
+      <Route path='/settings' element={<Layout><Settings /></Layout>} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
     </Routes>
