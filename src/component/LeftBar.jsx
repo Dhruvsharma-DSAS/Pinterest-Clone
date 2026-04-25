@@ -5,7 +5,7 @@ const NavItem = ({ to, src, alt, label, className = "", hasNotification = false 
   const content = (
     <div className="relative group flex items-center justify-center w-full">
       <img
-        className={`${className} cursor-pointer hover:bg-gray-100 transition-all`}
+        className={`${className} cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-800 transition-all`}
         src={src}
         alt={alt}
       />
@@ -69,10 +69,10 @@ const LeftBar = ({ onSettingsClick }) => {
 
       <div onClick={onSettingsClick} className="w-full">
         <NavItem
-            src="https://i.pinimg.com/736x/e5/d1/b0/e5d1b01c1447bea5b4cdc2344a315a93.jpg"
+            src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png"
             alt="Settings"
             label="Settings"
-            className="h-[30px] w-[30px] object-contain"
+            className="h-[26px] w-[26px] object-contain dark:invert"
         />
       </div>
     </div>
