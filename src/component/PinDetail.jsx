@@ -83,16 +83,6 @@ const PinDetail = ({ pin, onClose, onSave, isDarkMode }) => {
                       alt="Like" 
                     />
                 </button>
-                <button 
-                  onClick={() => handleInteraction(() => alert('Shared!'))}
-                  className="p-1.5 rounded-full transition-all hover:bg-gray-100 dark:hover:bg-zinc-800"
-                >
-                    <img 
-                      src="https://i.pinimg.com/736x/29/b8/61/29b861b00a58f6c07c80d34520d0490f.jpg" 
-                      className="w-10 h-10 rounded-full object-cover" 
-                      alt="Send" 
-                    />
-                </button>
             </div>
             
             <button 
