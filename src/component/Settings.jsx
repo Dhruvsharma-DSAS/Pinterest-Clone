@@ -114,10 +114,6 @@ const Settings = ({ onClose, isDarkMode, setIsDarkMode }) => {
             <section className="border-t border-zinc-100/10 pt-10 pb-4">
                 <div className="flex flex-col gap-3">
                     <div className="flex justify-between items-center text-[13px]">
-                        <span className="opacity-40 font-medium">Version</span>
-                        <span className="font-bold tracking-wider">1.4.2-final</span>
-                    </div>
-                    <div className="flex justify-between items-center text-[13px]">
                         <span className="opacity-40 font-medium">Theme</span>
                         <span className={`font-bold px-3 py-1 rounded-full text-[10px] uppercase ${isDarkMode ? 'bg-zinc-800 text-blue-400' : 'bg-zinc-100 text-zinc-600'}`}>
                             {isDarkMode ? 'Dark' : 'Light'}
