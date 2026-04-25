@@ -1,17 +1,42 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import imageData from '../../imgdata/img data'
 import ProfileMenu from './ProfileMenu'
 
-const RightBar = ({ onPinClick }) => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [showNotification, setShowNotification] = React.useState(false);
+// Import category data for better search results
+import vegetarian from '../../imgdata/Vegetarian recipes to make on repeat'
+import chic from '../../imgdata/Chic decor ideas inspired by animal prints'
+import secondhand from '../../imgdata/Secondhand glow ups'
+import reading from '../../imgdata/Reading aesthetic'
+import cute from '../../imgdata/How to draw cute animals'
+import good from '../../imgdata/Good things are happening'
 
-  React.useEffect(() => {
+const RightBar = ({ onPinClick }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [displayImages, setDisplayImages] = useState([]);
+
+  const suggestions = [
+    { text: 'Vegetarian recipes', data: vegetarian },
+    { text: 'Chic decor', data: chic },
+    { text: 'Secondhand glow ups', data: secondhand },
+    { text: 'Reading aesthetic', data: reading },
+    { text: 'Cute animals', data: cute },
+    { text: 'Good things', data: good }
+  ];
+
+  const initialImages = useMemo(() => {
+    return [...imageData].sort(() => Math.random() - 0.5);
+  }, []);
+
+  useEffect(() => {
     const status = localStorage.getItem('isLoggedIn');
     if (status === 'true') {
       setIsLoggedIn(true);
     }
+    setDisplayImages(initialImages);
 
     const timer = setTimeout(() => {
         setShowNotification(true);
@@ -19,11 +44,28 @@ const RightBar = ({ onPinClick }) => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [initialImages]);
 
-  const shuffledImages = useMemo(() => {
-    return [...imageData].sort(() => Math.random() - 0.5);
-  }, []);
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setDisplayImages(initialImages);
+      return;
+    }
+
+    // Filter logic: check suggestions first
+    const matchedSuggestion = suggestions.find(s => 
+      s.text.toLowerCase().includes(query.toLowerCase())
+    );
+
+    if (matchedSuggestion) {
+      setDisplayImages(matchedSuggestion.data);
+    } else {
+      // Fallback: random shuffle of initial images to simulate "results"
+      setDisplayImages([...initialImages].sort(() => Math.random() - 0.5).slice(0, 15));
+    }
+    setShowSuggestions(false);
+  };
 
   const handleSave = (e, src) => {
     e.preventDefault();
@@ -52,16 +94,52 @@ const RightBar = ({ onPinClick }) => {
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-6 sticky top-0 theme-header z-10 py-2 transition-colors">
-        <div className="flex-1 theme-input rounded-full flex items-center px-4 py-2.5">
-          <span className="text-gray-500 mr-2">🔍</span>
-          <input 
-            type="text" 
-            placeholder="Search" 
-            className="bg-transparent border-none outline-none w-full text-sm theme-text placeholder-zinc-500"
-          />
+      {/* Header with Search */}
+      <div className="flex items-center gap-4 mb-8 sticky top-0 theme-header z-50 py-2 transition-colors">
+        <div className="flex-1 relative">
+            <div className="theme-input rounded-full flex items-center px-4 py-2.5 shadow-sm border theme-border focus-within:ring-2 ring-zinc-200 transition-all">
+                <span className="text-gray-500 mr-2">🔍</span>
+                <input 
+                    type="text" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setShowSuggestions(true)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch(searchQuery)}
+                    placeholder="Search for ideas..." 
+                    className="bg-transparent border-none outline-none w-full text-sm theme-text placeholder-zinc-500 font-medium"
+                />
+                {searchQuery && (
+                    <button onClick={() => {setSearchQuery(''); setDisplayImages(initialImages);}} className="text-zinc-400 hover:text-zinc-600 px-2">✕</button>
+                )}
+            </div>
+
+            {/* Suggestions Dropdown */}
+            {showSuggestions && (
+                <div className="absolute top-full left-0 w-full mt-2 theme-bg border theme-border rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="p-4">
+                        <p className="text-xs font-black text-zinc-400 mb-3 uppercase tracking-widest px-2">Suggestions</p>
+                        <div className="grid grid-cols-1 gap-1">
+                            {suggestions.map((s, i) => (
+                                <button 
+                                    key={i}
+                                    onClick={() => handleSearch(s.text)}
+                                    className="flex items-center gap-3 p-3 hover:theme-input rounded-xl transition-all text-left w-full group"
+                                >
+                                    <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 shadow-sm">
+                                        <img src={s.data[0]} className="w-full h-full object-cover group-hover:scale-110 transition-transform" alt="" />
+                                    </div>
+                                    <span className="theme-text font-bold text-sm">{s.text}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="bg-zinc-50 dark:bg-zinc-800/50 p-3 text-center border-t theme-border">
+                        <p className="text-[10px] text-zinc-500 font-bold">Press Enter to search globally</p>
+                    </div>
+                </div>
+            )}
         </div>
+
         <div className="flex gap-4 font-semibold text-sm items-center">
           {isLoggedIn ? (
             <ProfileMenu />
@@ -76,12 +154,13 @@ const RightBar = ({ onPinClick }) => {
         </div>
       </div>
 
+      {/* Grid */}
       <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4 pb-20">
-        {shuffledImages.map((src, index) => (
+        {displayImages.map((src, index) => (
           <div 
             key={index} 
             onClick={() => onPinClick(src)}
-            className="break-inside-avoid rounded-2xl overflow-hidden cursor-pointer group relative shadow-sm hover:shadow-xl transition-all duration-300"
+            className="break-inside-avoid rounded-2xl overflow-hidden cursor-pointer group relative shadow-sm hover:shadow-xl transition-all duration-300 animate-in fade-in zoom-in-95 duration-500"
           >
             <img 
               src={src} 
@@ -105,6 +184,14 @@ const RightBar = ({ onPinClick }) => {
           </div>
         ))}
       </div>
+
+      {/* Backdrop for suggestions */}
+      {showSuggestions && (
+          <div 
+            className="fixed inset-0 z-40 bg-black/5" 
+            onClick={() => setShowSuggestions(false)}
+          />
+      )}
     </div>
   )
 }
