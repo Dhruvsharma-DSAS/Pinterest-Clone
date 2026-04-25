@@ -2,8 +2,6 @@ import React, { useMemo, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import imageData from '../../imgdata/img data'
 import ProfileMenu from './ProfileMenu'
-
-// Import category data for better search results
 import vegetarian from '../../imgdata/Vegetarian recipes to make on repeat'
 import chic from '../../imgdata/Chic decor ideas inspired by animal prints'
 import secondhand from '../../imgdata/Secondhand glow ups'
@@ -53,7 +51,6 @@ const RightBar = ({ onPinClick }) => {
       return;
     }
 
-    // Filter logic: check suggestions first
     const matchedSuggestion = suggestions.find(s => 
       s.text.toLowerCase().includes(query.toLowerCase())
     );
@@ -61,7 +58,6 @@ const RightBar = ({ onPinClick }) => {
     if (matchedSuggestion) {
       setDisplayImages(matchedSuggestion.data);
     } else {
-      // Fallback: random shuffle of initial images to simulate "results"
       setDisplayImages([...initialImages].sort(() => Math.random() - 0.5).slice(0, 15));
     }
     setShowSuggestions(false);
@@ -82,7 +78,6 @@ const RightBar = ({ onPinClick }) => {
 
   return (
     <div className="w-full h-screen overflow-y-auto p-4 relative theme-bg transition-colors duration-300">
-      
       {showNotification && (
         <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] animate-bounce">
             <div className="bg-black text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-zinc-700">
@@ -94,7 +89,6 @@ const RightBar = ({ onPinClick }) => {
         </div>
       )}
 
-      {/* Header with Search */}
       <div className="flex items-center gap-4 mb-8 sticky top-0 theme-header z-50 py-2 transition-colors">
         <div className="flex-1 relative">
             <div className="theme-input rounded-full flex items-center px-4 py-2.5 shadow-sm border theme-border focus-within:ring-2 ring-zinc-200 transition-all">
@@ -113,7 +107,6 @@ const RightBar = ({ onPinClick }) => {
                 )}
             </div>
 
-            {/* Suggestions Dropdown */}
             {showSuggestions && (
                 <div className="absolute top-full left-0 w-full mt-2 theme-bg border theme-border rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="p-4">
@@ -154,7 +147,6 @@ const RightBar = ({ onPinClick }) => {
         </div>
       </div>
 
-      {/* Grid */}
       <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4 pb-20">
         {displayImages.map((src, index) => (
           <div 
@@ -185,7 +177,6 @@ const RightBar = ({ onPinClick }) => {
         ))}
       </div>
 
-      {/* Backdrop for suggestions */}
       {showSuggestions && (
           <div 
             className="fixed inset-0 z-40 bg-black/5" 

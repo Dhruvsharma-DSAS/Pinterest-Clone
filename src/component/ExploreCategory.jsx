@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ProfileMenu from './ProfileMenu'
-
-// Import all category data
 import vegetarian from '../../imgdata/Vegetarian recipes to make on repeat'
 import chic from '../../imgdata/Chic decor ideas inspired by animal prints'
 import secondhand from '../../imgdata/Secondhand glow ups'
@@ -57,7 +55,6 @@ const ExploreCategory = ({ onPinClick }) => {
 
   return (
     <div className="w-full h-screen overflow-y-auto theme-bg p-8 transition-colors duration-300">
-      {/* Header */}
       <div className="flex items-center justify-between mb-12 sticky top-0 theme-header z-20 py-4 transition-colors">
         <div className="flex items-center gap-6">
             <Link to="/explore" className="p-2 hover:theme-input rounded-full transition-colors theme-text">
@@ -79,7 +76,6 @@ const ExploreCategory = ({ onPinClick }) => {
         </div>
       </div>
 
-      {/* Grid */}
       <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4 pb-20">
         {images.map((src, index) => (
           <div 
