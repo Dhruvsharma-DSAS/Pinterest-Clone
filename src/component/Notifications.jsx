@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Notifications = () => {
+  const navigate = useNavigate()
+  
   const [updates, setUpdates] = useState([
     {
       id: 1,
+      slug: 'vegetarian-recipes',
       type: 'recommendation',
       text: 'New ideas for your board: Vegetarian Recipes',
       images: [
@@ -16,6 +20,7 @@ const Notifications = () => {
     },
     {
       id: 2,
+      slug: 'chic-decor',
       type: 'user_action',
       text: 'Emma saved your pin to "Chic Decor"',
       image: 'https://i.pinimg.com/1200x/f5/a7/d6/f5a7d628c7e1a3c0a1da92b22cd733dc.jpg',
@@ -24,6 +29,7 @@ const Notifications = () => {
     },
     {
       id: 3,
+      slug: 'reading-aesthetic',
       type: 'recommendation',
       text: 'You might like these "Reading Aesthetic" pins',
       images: [
@@ -35,6 +41,7 @@ const Notifications = () => {
     },
     {
       id: 4,
+      slug: 'cute-animals',
       type: 'user_action',
       text: 'Someone liked your "Cute Animals" board',
       image: 'https://i.pinimg.com/736x/95/40/b1/9540b1b5148dcb258bcfb7b55d705373.jpg',
@@ -43,6 +50,7 @@ const Notifications = () => {
     },
     {
       id: 5,
+      slug: 'secondhand-glow-ups',
       type: 'recommendation',
       text: 'Because you saved "Glow ups", check these out',
       images: [
@@ -54,12 +62,18 @@ const Notifications = () => {
     }
   ])
 
-  const markAsRead = (id) => {
-    setUpdates(prev => prev.map(n => n.id === id ? { ...n, read: true } : n))
+  const handleNotificationClick = (notif) => {
+    // Mark as read locally
+    setUpdates(prev => prev.map(n => n.id === notif.id ? { ...n, read: true } : n))
+    
+    // Navigate to the specific category page
+    if (notif.slug) {
+      navigate(`/explore/${notif.slug}`)
+    }
   }
 
   return (
-    <div className="w-full h-screen overflow-y-auto bg-white p-6 sm:p-10">
+    <div className="w-full h-screen overflow-y-auto bg-white p-6 sm:p-10 scroll-smooth">
       <div className="max-w-2xl mx-auto">
         
         <div className="mb-12 text-center">
@@ -71,7 +85,7 @@ const Notifications = () => {
                 updates.map((notif) => (
                 <div 
                     key={notif.id} 
-                    onClick={() => markAsRead(notif.id)}
+                    onClick={() => handleNotificationClick(notif)}
                     className="flex items-center gap-4 p-4 hover:bg-zinc-50 rounded-[24px] cursor-pointer transition-all group relative"
                 >
                     {!notif.read && <div className="absolute left-1 w-2 h-2 bg-blue-600 rounded-full" />}
