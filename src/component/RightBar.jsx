@@ -27,7 +27,7 @@ const RightBar = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-y-auto p-4 relative bg-white dark:bg-[#111111] transition-colors duration-300">
+    <div className="w-full h-screen overflow-y-auto p-4 relative bg-[var(--bg-primary)] transition-colors duration-300">
       
       {showNotification && (
         <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] animate-bounce">
@@ -41,8 +41,8 @@ const RightBar = () => {
       )}
 
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6 sticky top-0 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-md z-10 py-2 transition-colors duration-300">
-        <div className="flex-1 bg-gray-100 dark:bg-zinc-800 rounded-full flex items-center px-4 py-2.5 transition-colors">
+      <div className="flex items-center gap-4 mb-6 sticky top-0 bg-[var(--bg-primary)]/80 backdrop-blur-md z-10 py-2 transition-colors duration-300">
+        <div className="flex-1 bg-[var(--bg-secondary)] rounded-full flex items-center px-4 py-2.5 transition-colors">
           <span className="text-gray-500 mr-2">🔍</span>
           <input 
             type="text" 

@@ -38,17 +38,17 @@ const LeftBar = ({ onSettingsClick }) => {
       <div className="grid content-start justify-items-center gap-9 pt-10 w-full">
         <NavItem
           to="/"
-          src="https://i.pinimg.com/736x/cb/3e/07/cb3e0728a69d17bbcbe8fd6b1642b209.jpg"
+          src="https://cdn-icons-png.flaticon.com/512/1946/1946436.png"
           alt="Home"
           label="Home"
-          className="h-[49px] w-[49px] p-[1px] object-contain rounded-2xl"
+          className="h-[28px] w-[28px] object-contain dark:invert"
         />
         <NavItem
           to="/explore"
-          src="https://i.pinimg.com/736x/3e/08/22/3e0822d8dcb8ef03fac3df915903fbe8.jpg"
+          src="https://cdn-icons-png.flaticon.com/512/2040/2040504.png"
           alt="Explore"
           label="Explore"
-          className="h-[40px] w-[40px] p-[7px] object-contain rounded-2xl"
+          className="h-[32px] w-[32px] object-contain rounded-2xl dark:invert"
         />
         <NavItem
           to="/your-board"
@@ -63,7 +63,7 @@ const LeftBar = ({ onSettingsClick }) => {
           alt="Notifications"
           label="Notifications"
           hasNotification={true}
-          className="h-[39px] w-[39px] p-[4px] object-contain rounded-full"
+          className="h-[39px] w-[39px] p-[4px] object-contain rounded-full dark:invert"
         />
       </div>
 

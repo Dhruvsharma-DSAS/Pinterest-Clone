@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --secondary-bg: #f3f4f6;
-  --card-bg: #ffffff;
-  --border-color: #e5e7eb;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #111111;
+  --text-secondary: #71717a;
+  --border-primary: #e5e7eb;
 }
 
 .dark {
-  --bg-color: #111111;
-  --text-color: #ffffff;
-  --secondary-bg: #1f2937;
-  --card-bg: #18181b;
-  --border-color: #27272a;
+  --bg-primary: #111111;
+  --bg-secondary: #18181b;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --border-primary: #27272a;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  padding: 0;
+}
+
+/* Force light/dark styles for main containers */
+.main-layout {
+  background-color: var(--bg-primary);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -36,7 +43,8 @@ body {
   background: #3f3f46;
 }
 
-/* Custom classes */
-.dark-bg { background-color: var(--bg-color); }
-.dark-text { color: var(--text-color); }
-.dark-border { border-color: var(--border-color); }
+/* Utility overrides for consistency */
+.dark .bg-white { background-color: #111111 !important; }
+.dark .text-black { color: #ffffff !important; }
+.dark .border-zinc-200 { border-color: #27272a !important; }
+.dark .bg-gray-100 { background-color: #18181b !important; }
