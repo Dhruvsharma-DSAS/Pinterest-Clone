@@ -51,7 +51,7 @@ const ExploreCategory = () => {
 
   if (!category) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-white">
+      <div className="flex flex-col items-center justify-center h-screen bg-white dark:bg-[#111111] dark:text-white transition-colors duration-300">
         <h1 className="text-2xl font-bold mb-4">Category not found</h1>
         <Link to="/explore" className="text-blue-500 hover:underline">Back to Explore</Link>
       </div>
@@ -61,14 +61,14 @@ const ExploreCategory = () => {
   const images = category.data || []
 
   return (
-    <div className="w-full h-screen overflow-y-auto bg-white p-8">
+    <div className="w-full h-screen overflow-y-auto bg-white dark:bg-[#111111] p-8 transition-colors duration-300">
       {/* Header */}
-      <div className="flex items-center justify-between mb-12 sticky top-0 bg-white/80 backdrop-blur-md z-20 py-4">
+      <div className="flex items-center justify-between mb-12 sticky top-0 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-md z-20 py-4 transition-colors">
         <div className="flex items-center gap-6">
-            <Link to="/explore" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <Link to="/explore" className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors dark:text-white">
             <span className="text-2xl">←</span>
             </Link>
-            <h1 className="text-3xl font-black">{category.title}</h1>
+            <h1 className="text-3xl font-black dark:text-white transition-colors">{category.title}</h1>
         </div>
         <div className="flex items-center gap-4">
             {isLoggedIn ? (

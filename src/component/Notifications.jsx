@@ -63,21 +63,18 @@ const Notifications = () => {
   ])
 
   const handleNotificationClick = (notif) => {
-    // Mark as read locally
     setUpdates(prev => prev.map(n => n.id === notif.id ? { ...n, read: true } : n))
-    
-    // Navigate to the specific category page
     if (notif.slug) {
       navigate(`/explore/${notif.slug}`)
     }
   }
 
   return (
-    <div className="w-full h-screen overflow-y-auto bg-white p-6 sm:p-10 scroll-smooth">
+    <div className="w-full h-screen overflow-y-auto bg-white dark:bg-[#111111] p-6 sm:p-10 transition-colors duration-300">
       <div className="max-w-2xl mx-auto">
         
         <div className="mb-12 text-center">
-            <h1 className="text-2xl font-bold border-b-2 border-black inline-block pb-1 px-4">Updates</h1>
+            <h1 className="text-2xl font-bold border-b-2 border-black dark:border-white dark:text-white inline-block pb-1 px-4 transition-colors">Updates</h1>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -86,15 +83,15 @@ const Notifications = () => {
                 <div 
                     key={notif.id} 
                     onClick={() => handleNotificationClick(notif)}
-                    className="flex items-center gap-4 p-4 hover:bg-zinc-50 rounded-[24px] cursor-pointer transition-all group relative"
+                    className={`flex items-center gap-4 p-4 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 rounded-[24px] cursor-pointer transition-all group relative`}
                 >
-                    {!notif.read && <div className="absolute left-1 w-2 h-2 bg-blue-600 rounded-full" />}
+                    {!notif.read && <div className="absolute left-1 w-2 h-2 bg-blue-600 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.5)]" />}
                     
                     <div className="flex-shrink-0">
                     {notif.images ? (
                         <div className="flex -space-x-6">
                         {notif.images.slice(0, 2).map((img, i) => (
-                            <div key={i} className="w-16 h-16 rounded-[20px] border-[3px] border-white overflow-hidden shadow-sm">
+                            <div key={i} className={`w-16 h-16 rounded-[20px] border-[3px] ${notif.read ? 'border-zinc-100 dark:border-zinc-800' : 'border-white dark:border-zinc-700'} overflow-hidden shadow-sm transition-colors`}>
                             <img src={img} alt="" className="w-full h-full object-cover" />
                             </div>
                         ))}
@@ -107,28 +104,28 @@ const Notifications = () => {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                    <p className={`text-[15px] leading-snug ${notif.read ? 'text-zinc-500' : 'text-black font-semibold'} line-clamp-2`}>
+                    <p className={`text-[15px] leading-snug ${notif.read ? 'text-zinc-400 dark:text-zinc-500' : 'text-black dark:text-zinc-100 font-semibold'} line-clamp-2 transition-colors`}>
                         {notif.text}
                     </p>
                     <p className="text-[13px] text-zinc-400 mt-1 font-medium">{notif.time}</p>
                     </div>
 
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button className="w-8 h-8 rounded-full hover:bg-zinc-200 flex items-center justify-center">
-                            <span className="text-zinc-400 font-bold">...</span>
+                        <button className="w-8 h-8 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 flex items-center justify-center dark:text-white">
+                            <span className="font-bold">...</span>
                         </button>
                     </div>
                 </div>
                 ))
             ) : (
                 <div className="py-20 text-center">
-                    <p className="text-xl font-bold text-zinc-300">You're all caught up!</p>
+                    <p className="text-xl font-bold text-zinc-300 dark:text-zinc-700">You're all caught up!</p>
                 </div>
             )}
         </div>
 
-        <div className="mt-20 text-center border-t border-zinc-100 pt-10 pb-20">
-          <p className="text-[11px] font-black text-zinc-300 uppercase tracking-[2px]">Pinterest Community</p>
+        <div className="mt-20 text-center border-t border-zinc-100 dark:border-zinc-800/50 pt-10 pb-20">
+          <p className="text-[11px] font-black text-zinc-300 dark:text-zinc-700 uppercase tracking-[2px]">Pinterest Community</p>
         </div>
       </div>
     </div>

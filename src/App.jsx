@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LeftBar from './component/LeftBar'
 import Login from './component/Login'
@@ -11,12 +11,18 @@ import ExploreCategory from './component/ExploreCategory'
 import Settings from './component/Settings'
 
 const Layout = ({ children }) => {
+  const [showSettings, setShowSettings] = useState(false)
+
   return (
-    <div className='flex h-screen bg-white'>
-      <LeftBar />
+    <div className='flex h-screen bg-white dark:bg-[#111111] transition-colors duration-300 relative'>
+      <LeftBar onSettingsClick={() => setShowSettings(true)} />
       <div className='flex-1 h-screen overflow-hidden'>
         {children}
       </div>
+      
+      {showSettings && (
+        <Settings onClose={() => setShowSettings(false)} />
+      )}
     </div>
   )
 }
@@ -29,7 +35,6 @@ const App = () => {
       <Route path='/explore/:categoryId' element={<Layout><ExploreCategory /></Layout>} />
       <Route path='/notifications' element={<Layout><Notifications /></Layout>} />
       <Route path='/your-board' element={<Layout><YourBoard /></Layout>} />
-      <Route path='/settings' element={<Layout><Settings /></Layout>} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
     </Routes>

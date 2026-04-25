@@ -67,15 +67,15 @@ const Explore = () => {
   ]
 
   return (
-    <div className="w-full h-screen overflow-y-auto bg-white p-8 scroll-smooth">
+    <div className="w-full h-screen overflow-y-auto bg-white dark:bg-[#111111] p-8 scroll-smooth transition-colors duration-300">
       {/* Search Header */}
-      <div className="flex items-center gap-4 mb-12 max-w-5xl mx-auto sticky top-0 bg-white/80 backdrop-blur-md z-20 py-4">
-        <div className="flex-1 bg-gray-100 rounded-full flex items-center px-4 py-3 border border-transparent focus-within:border-blue-400 transition-all">
+      <div className="flex items-center gap-4 mb-12 max-w-5xl mx-auto sticky top-0 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-md z-20 py-4 transition-colors">
+        <div className="flex-1 bg-gray-100 dark:bg-zinc-800 rounded-full flex items-center px-4 py-3 border border-transparent focus-within:border-blue-400 transition-all">
           <span className="text-gray-500 mr-2 text-xl">🔍</span>
           <input 
             type="text" 
             placeholder="Search" 
-            className="bg-transparent border-none outline-none w-full text-lg"
+            className="bg-transparent border-none outline-none w-full text-lg dark:text-white"
           />
         </div>
         <div className="flex items-center gap-4">
@@ -93,7 +93,7 @@ const Explore = () => {
       </div>
 
       <div className="text-center mb-16">
-        <h1 className="text-5xl font-extrabold tracking-tight">Stay inspired</h1>
+        <h1 className="text-5xl font-extrabold tracking-tight dark:text-white transition-colors">Stay inspired</h1>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 pb-32">

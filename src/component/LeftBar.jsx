@@ -25,9 +25,9 @@ const NavItem = ({ to, src, alt, label, className = "", hasNotification = false 
   return to ? <Link to={to} className="w-full flex justify-center">{content}</Link> : content
 }
 
-const LeftBar = () => {
+const LeftBar = ({ onSettingsClick }) => {
   return (
-    <div className="grid h-screen w-[96px] grid-rows-[auto_1fr_auto] justify-items-center border-r border-zinc-200 bg-white py-6">
+    <div className="grid h-screen w-[96px] grid-rows-[auto_1fr_auto] justify-items-center border-r border-zinc-200 bg-white dark:bg-[#111111] dark:border-zinc-800 py-6 transition-colors duration-300">
       <NavItem
         to="/"
         src="https://i.pinimg.com/736x/6e/ad/91/6ead912ceb43c93b8e189d1eb802845f.jpg"
@@ -67,13 +67,14 @@ const LeftBar = () => {
         />
       </div>
 
-      <NavItem
-        to="/settings"
-        src="https://i.pinimg.com/736x/e5/d1/b0/e5d1b01c1447bea5b4cdc2344a315a93.jpg"
-        alt="Settings"
-        label="Settings"
-        className="h-[30px] w-[30px] object-contain"
-      />
+      <div onClick={onSettingsClick} className="w-full">
+        <NavItem
+            src="https://i.pinimg.com/736x/e5/d1/b0/e5d1b01c1447bea5b4cdc2344a315a93.jpg"
+            alt="Settings"
+            label="Settings"
+            className="h-[30px] w-[30px] object-contain"
+        />
+      </div>
     </div>
   )
 }

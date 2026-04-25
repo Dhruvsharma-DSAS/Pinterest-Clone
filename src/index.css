@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --secondary-bg: #f3f4f6;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+}
+
+.dark {
+  --bg-color: #111111;
+  --text-color: #ffffff;
+  --secondary-bg: #1f2937;
+  --card-bg: #18181b;
+  --border-color: #27272a;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom classes to override tailwind defaults when in dark mode if needed, 
+   or just use tailwind's dark: variant if configured */
+.dark-bg { background-color: var(--bg-color); }
+.dark-text { color: var(--text-color); }
+.dark-border { border-color: var(--border-color); }
+.dark-card { background-color: var(--card-bg); }
+.dark-secondary { background-color: var(--secondary-bg); }
