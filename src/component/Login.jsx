@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import images from '../../imgdata/img data.js';
+import pinterestLogo from '../assets/icons/Pinterest.png';
 
 const Login = () => {
-
-
   const [identifier, setIdentifier] = useState(''); 
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +27,7 @@ const Login = () => {
     
     if (matchedUser) {
       localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('user', JSON.stringify(matchedUser)); // Store current user
+      localStorage.setItem('user', JSON.stringify(matchedUser));
       alert('Success! Getting your boards ready...');
       navigate('/');
     } else {
@@ -54,14 +53,13 @@ const Login = () => {
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white/60 backdrop-blur-xl md:px-12">
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center bg-[url('https://i.pinimg.com/736x/6e/ad/91/6ead912ceb43c93b8e189d1eb802845f.jpg')] bg-cover justify-center rounded-full bg-[#e60023] shadow-lg shadow-red-200" />
+            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white shadow-md overflow-hidden">
+                <img src={pinterestLogo} alt="Logo" className="w-8 h-8 object-contain" />
+            </div>
             <span className="text-xl font-bold tracking-tight text-[#e60023]">
               Pinterest
             </span>
           </Link>
-          <nav className="hidden md:block">
-          
-          </nav>
         </div>
       </header>
 
@@ -69,7 +67,9 @@ const Login = () => {
         <div className="mx-auto flex w-full max-w-[480px] flex-col items-center">
           <div className="w-full overflow-hidden rounded-[32px] bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] md:p-10">
             <div className="flex flex-col items-center">
-              <div className="mb-4 bg-[url('https://i.pinimg.com/736x/6e/ad/91/6ead912ceb43c93b8e189d1eb802845f.jpg')] bg-cover flex h-10 w-10 items-center justify-center rounded-full bg-[#e60023]" />
+              <div className="mb-6 h-12 w-12 flex items-center justify-center rounded-full bg-white shadow-inner overflow-hidden">
+                <img src={pinterestLogo} alt="Logo" className="w-10 h-10 object-contain" />
+              </div>
               
               <h2 className="text-3xl font-bold tracking-tight text-[#111111]">
                 Welcome Back
@@ -140,6 +140,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-

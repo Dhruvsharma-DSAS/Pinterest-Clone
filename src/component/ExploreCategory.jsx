@@ -31,6 +31,19 @@ const ExploreCategory = () => {
     }
   }, [])
 
+  const handleSave = (e, src) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const saved = JSON.parse(localStorage.getItem('savedPins') || '[]');
+    if (!saved.includes(src)) {
+        saved.push(src);
+        localStorage.setItem('savedPins', JSON.stringify(saved));
+        alert('Saved to your board!');
+    } else {
+        alert('Already saved!');
+    }
+  };
+
   if (!category) {
     return (
       <div className="flex flex-col items-center justify-center h-screen theme-bg theme-text">
@@ -78,7 +91,12 @@ const ExploreCategory = () => {
             />
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-4 text-white">
               <div className="flex justify-end">
-                <button className="bg-red-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-red-700 transition-colors shadow-lg">Save</button>
+                <button 
+                    onClick={(e) => handleSave(e, src)}
+                    className="bg-red-600 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-red-700 transition-colors shadow-lg active:scale-95"
+                >
+                    Save
+                </button>
               </div>
               <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/40 transition-colors">
                   <span className="text-xs">↗</span>

@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import settingIcon from '../assets/icons/Setting icon .png'
+import notificationIcon from '../assets/icons/notification icon.png'
+import pinterestLogo from '../assets/icons/Pinterest.png'
 
 const NavItem = ({ to, src, alt, label, className = "", hasNotification = false }) => {
   const content = (
@@ -30,25 +33,25 @@ const LeftBar = ({ onSettingsClick, isDarkMode }) => {
     <div className="grid h-screen w-[96px] grid-rows-[auto_1fr_auto] justify-items-center border-r theme-border theme-bg py-6 transition-colors duration-300">
       <NavItem
         to="/"
-        src="https://i.pinimg.com/736x/6e/ad/91/6ead912ceb43c93b8e189d1eb802845f.jpg"
+        src={pinterestLogo}
         alt="Pinterest logo"
-        className="h-12 w-11 rounded-full object-cover"
+        className="h-12 w-11 rounded-full object-contain"
       />
 
-      <div className="grid content-start justify-items-center gap-9 pt-10 w-full">
+      <div className="grid content-start justify-items-center gap-9 pt-24 w-full">
         <NavItem
           to="/"
-          src={isDarkMode ? "https://cdn-icons-png.flaticon.com/512/1946/1946436.png" : "https://cdn-icons-png.flaticon.com/512/1946/1946488.png"}
+          src="https://i.pinimg.com/736x/cb/3e/07/cb3e0728a69d17bbcbe8fd6b1642b209.jpg"
           alt="Home"
           label="Home"
-          className="h-[28px] w-[28px] object-contain dark:invert transition-all duration-300"
+          className="h-[40px] w-[40px] p-[1px] object-contain rounded-2xl"
         />
         <NavItem
           to="/explore"
-          src="https://cdn-icons-png.flaticon.com/512/2040/2040504.png"
+          src="https://i.pinimg.com/736x/32/23/ae/3223ae7efbcd98dadbe20465fcd6b7ab.jpg"
           alt="Explore"
           label="Explore"
-          className="h-[32px] w-[32px] object-contain rounded-2xl dark:invert"
+          className="h-[40px] w-[40px] p-[7px] object-contain rounded-2xl"
         />
         <NavItem
           to="/your-board"
@@ -59,21 +62,23 @@ const LeftBar = ({ onSettingsClick, isDarkMode }) => {
         />
         <NavItem
           to="/notifications"
-          src="https://i.pinimg.com/1200x/db/53/f4/db53f45df0246d78d4bc64c7bb750036.jpg"
+          src="https://i.pinimg.com/1200x/c9/fe/af/c9feaf6c08af754376617ffb7220a1c8.jpg"
           alt="Notifications"
           label="Notifications"
           hasNotification={true}
-          className="h-[39px] w-[39px] p-[4px] object-contain rounded-full dark:invert"
+          className="h-[39px] w-[39px] p-[2px] object-contain rounded-full"
         />
       </div>
 
-      <div onClick={onSettingsClick} className="w-full">
-        <NavItem
-            src={isDarkMode ? "https://cdn-icons-png.flaticon.com/512/3524/3524659.png" : "https://cdn-icons-png.flaticon.com/512/3524/3524636.png"}
-            alt="Settings"
-            label="Settings"
-            className="h-[26px] w-[26px] object-contain dark:invert transition-all duration-300"
-        />
+      <div onClick={onSettingsClick} className="w-full flex justify-center pb-4">
+        <div className="w-12 h-12 rounded-full border theme-border flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer shadow-sm">
+            <NavItem
+                src="https://i.pinimg.com/1200x/79/62/3b/79623b5a87609eaa87dd0475e755c6ca.jpg"
+                alt="Settings"
+                label="Settings"
+                className="h-[40px] w-[40px] object-cover rounded-full dark:invert transition-all duration-300"
+            />
+        </div>
       </div>
     </div>
   )
