@@ -4,12 +4,22 @@ import imageData from '../../imgdata/img data'
 
 const RightBar = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [showNotification, setShowNotification] = React.useState(false);
 
   React.useEffect(() => {
     const status = localStorage.getItem('isLoggedIn');
     if (status === 'true') {
       setIsLoggedIn(true);
     }
+
+    // Show a small notification after 1 second
+    const timer = setTimeout(() => {
+        setShowNotification(true);
+        // Hide it after 4 seconds
+        setTimeout(() => setShowNotification(false), 4000);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const shuffledImages = useMemo(() => {
@@ -19,6 +29,18 @@ const RightBar = () => {
   return (
     <div className="w-full h-screen overflow-y-auto p-4 relative">
       
+      {/* Toast Notification */}
+      {showNotification && (
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] animate-bounce">
+            <div className="bg-black text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-zinc-700">
+                <div className="w-8 h-8 rounded-lg overflow-hidden">
+                    <img src="https://i.pinimg.com/736x/63/ee/89/63ee89f3e840c57193b8f92fe60ba85d.jpg" alt="" className="w-full h-full object-cover" />
+                </div>
+                <span className="text-sm font-bold">New ideas waiting for you!</span>
+            </div>
+        </div>
+      )}
+
       <div className="flex items-center gap-4 mb-6 sticky top-0 bg-white z-10 py-2">
         <div className="flex-1 bg-gray-100 rounded-full flex items-center px-4 py-2">
           <span className="text-gray-500 mr-2">🔍</span>

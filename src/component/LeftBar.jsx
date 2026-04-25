@@ -44,6 +44,13 @@ const LeftBar = () => {
           className="h-[49px] w-[49px] p-[1px] object-contain rounded-2xl"
         />
         <NavItem
+          to="/explore"
+          src="https://i.pinimg.com/736x/3e/08/22/3e0822d8dcb8ef03fac3df915903fbe8.jpg"
+          alt="Explore"
+          label="Explore"
+          className="h-[40px] w-[40px] p-[7px] object-contain rounded-2xl"
+        />
+        <NavItem
           to="/your-board"
           src="https://i.pinimg.com/736x/fd/4d/3e/fd4d3ec06e0390cab9f385f944acb1c5.jpg"
           alt="Your Board"

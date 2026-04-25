@@ -21,6 +21,25 @@ const YourBoard = () => {
     { id: 3, name: 'Travel Vibes', count: 8, image: 'https://i.pinimg.com/736x/72/9a/13/729a1331da87f1fe02932578d2e12117.jpg' }
   ]
 
+  if (!isLoggedIn) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-white p-8">
+        <div className="max-w-sm text-center">
+          <div className="w-24 h-24 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span className="text-4xl">🔒</span>
+          </div>
+          <h1 className="text-2xl font-bold mb-4">Log in to see your boards</h1>
+          <p className="text-zinc-500 mb-8">Save your favorite ideas and organize them into boards to keep your inspiration in one place.</p>
+          <Link 
+            to="/login" 
+            className="inline-block bg-[#e60023] text-white px-8 py-3 rounded-full font-bold hover:bg-[#ad081b] transition-colors"
+          >
+            Log in
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full h-screen overflow-y-auto bg-white p-8">
